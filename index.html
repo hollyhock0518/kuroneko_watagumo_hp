@@ -84,10 +84,23 @@ section.s{max-width:1080px;margin:0 auto;padding:clamp(70px,10vw,120px) clamp(18
 .ev-row:nth-child(3){background:var(--lav)}
 .ev-row dt{font-weight:900}
 .ev-row dd{font-family:var(--en);font-weight:700}
-.goods{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px;margin-top:34px}
+.goods{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin-top:34px}
 .good{padding:0;overflow:hidden;transition:transform .25s,box-shadow .25s}
 .good:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:11px 11px 0 var(--ink)}
-.ph img{width:100%;height:100%;object-fit:contain;display:block;padding:10px}
+.goods{align-items:start}
+.good .ph.has{position:relative;display:block;width:100%;aspect-ratio:auto;border:0;border-bottom:3px solid var(--ink);padding:14px;background:var(--paper);cursor:zoom-in;font:inherit;color:inherit}
+.ph img{display:block;width:100%;height:auto;max-height:560px;object-fit:contain;border-radius:14px}
+.ph.has::after{content:"拡大";position:absolute;right:14px;bottom:14px;font-weight:900;font-size:.8rem;padding:2px 12px;border:2px solid var(--ink);border-radius:999px;background:var(--butter);transition:transform .2s}
+.ph.has:hover::after{transform:scale(1.12) rotate(-4deg)}
+/* 拡大ポップアップ */
+dialog{margin:auto;max-width:94vw;max-height:94vh;overflow:auto;padding:14px 14px 12px;border:3px solid var(--ink);border-radius:30px;background:var(--paper);color:var(--ink);box-shadow:9px 9px 0 var(--ink);cursor:zoom-out}
+dialog[open]{animation:pop .25s}
+@keyframes pop{from{transform:scale(.9);opacity:0}}
+dialog::backdrop{background:rgba(34,37,46,.55);backdrop-filter:blur(4px)}
+dialog img{display:block;max-width:calc(94vw - 34px);max-height:calc(94vh - 96px);margin:0 auto;border-radius:18px}
+dialog p{text-align:center;font-weight:900;margin-top:8px;line-height:1.4}
+dialog p small{display:block;font-weight:500;color:var(--sub);font-size:.75rem}
+.lbx{position:absolute;top:22px;right:22px;width:40px;height:40px;border-radius:50%;border:3px solid var(--ink);background:var(--butter);font:900 1.2rem/1 var(--en);cursor:pointer}
 .good .ph{aspect-ratio:4/3;overflow:hidden;display:grid;place-items:center;font-family:var(--en);font-weight:700;letter-spacing:.2em;border-bottom:3px solid var(--ink);background:repeating-linear-gradient(135deg,var(--sky) 0 14px,#D6ECFA 14px 28px)}
 .good:nth-child(2) .ph{background:repeating-linear-gradient(135deg,var(--mint) 0 14px,#D8F3E8 14px 28px)}
 .good:nth-child(3) .ph{background:repeating-linear-gradient(135deg,var(--lav) 0 14px,#E6E1F8 14px 28px)}
@@ -212,6 +225,12 @@ nav a:hover{transform:rotate(-3deg)}
   <p>© 2026 くろねこわたぐも</p>
 </footer>
 
+<dialog id="lb" aria-label="画像の拡大表示">
+  <button type="button" class="lbx" aria-label="閉じる">×</button>
+  <img id="lbImg" alt="">
+  <p id="lbCap">&nbsp;<small>画面のどこかをタップすると閉じます</small></p>
+</dialog>
+
 <script>
 /* ============ ここを書き換えて更新します ============ */
 const NEWS = [
@@ -224,7 +243,7 @@ const EVENT = [
   ["会場","東京ビッグサイト"]
 ];
 const GOODS = [
-  { name:"新刊（タイトル未定）", desc:"内容・ページ数は決定次第お知らせします。", price:"価格未定" /*, img:"images/shinkan.jpg" */ },
+  { name:"新刊（タイトル未定）", desc:"内容・ページ数は決定次第お知らせします。", price:"価格未定", img:"images/A0400.png" },
   { name:"頒布物 2", desc:"準備中です。", price:"価格未定" },
   { name:"頒布物 3", desc:"準備中です。", price:"価格未定" }
 ];
@@ -235,8 +254,18 @@ document.getElementById('newsList').innerHTML = NEWS.map(n =>
   `<li><time>${esc(n.date)}</time><span><b class="${n.cls}">${esc(n.tag)}</b>${esc(n.text)}</span></li>`).join('');
 document.getElementById('eventInfo').innerHTML = EVENT.map(e =>
   `<div class="ev-row card"><dt>${esc(e[0])}</dt><dd>${esc(e[1])}</dd></div>`).join('');
-document.getElementById('goods').innerHTML = GOODS.map(g =>
-  `<article class="good card">${g.img?`<div class="ph"><img src="${esc(g.img)}" alt="${esc(g.name)}" loading="lazy"></div>`:`<div class="ph">COMING SOON</div>`}<div class="in"><h3>${esc(g.name)}</h3><p>${esc(g.desc)}</p><span class="price">${esc(g.price)}</span></div></article>`).join('');
+document.getElementById('goods').innerHTML = GOODS.map((g,i) =>
+  `<article class="good card">${g.img?`<button type="button" class="ph has zoom" data-i="${i}" aria-label="${esc(g.name)}を拡大表示"><img src="${esc(g.img)}" alt="${esc(g.name)}" loading="lazy"></button>`:`<div class="ph">COMING SOON</div>`}<div class="in"><h3>${esc(g.name)}</h3><p>${esc(g.desc)}</p><span class="price">${esc(g.price)}</span></div></article>`).join('');
+
+/* 頒布物の画像を拡大表示 */
+const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
+document.getElementById('goods').addEventListener('click', e => {
+  const b = e.target.closest('.zoom'); if(!b) return;
+  const g = GOODS[b.dataset.i];
+  lbImg.src = g.img; lbImg.alt = g.name; lbCap.firstChild.textContent = g.name;
+  lb.showModal();
+});
+lb.addEventListener('click', () => lb.close());
 
 /* 黒猫の目がカーソル（タッチ位置）を追う */
 const pupils = [...document.querySelectorAll('.pu')];
