@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>くろねこわたぐも | サークルサイト</title>
+<meta name="description" content="サークル「くろねこわたぐも」の公式サイト。">
+<meta property="og:title" content="くろねこわたぐも">
+<meta property="og:description" content="サークル「くろねこわたぐも」の公式サイト。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF3F8; --sky:#BDE0F6; --mint:#BEEBD9; --lav:#D5CEF3; --butter:#F7EEB9;
+  --ink:#22252E; --sub:#555B69; --paper:#FBFCFE;
+  --font:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --en:"Space Grotesk",var(--font);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.8;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+/* header */
+header{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(16px,4vw,40px);backdrop-filter:blur(10px);background:rgba(238,243,248,.7)}
+header .mark{font-weight:900;letter-spacing:.04em;text-decoration:none}
+nav{display:flex;gap:6px}
+nav a{font-family:var(--en);font-weight:700;font-size:.85rem;text-decoration:none;padding:6px 14px;border:2px solid transparent;border-radius:999px;transition:.2s}
+nav a:hover{border-color:var(--ink);background:var(--butter)}
+
+/* hero */
+.hero{position:relative;min-height:0;display:grid;place-items:center;text-align:center;padding:84px 20px 50px;overflow:hidden}
+.blob{position:absolute;border-radius:42% 58% 63% 37%/45% 40% 60% 55%;filter:blur(2px);opacity:.9;animation:morph 14s ease-in-out infinite;will-change:transform}
+.b1{width:46vmax;height:46vmax;background:var(--sky);left:-12vmax;top:-10vmax}
+.b2{width:38vmax;height:38vmax;background:var(--mint);right:-10vmax;top:12vh;animation-delay:-5s}
+.b3{width:34vmax;height:34vmax;background:var(--lav);left:18vw;bottom:-18vmax;animation-delay:-9s}
+@keyframes morph{50%{border-radius:60% 40% 38% 62%/55% 62% 38% 45%;transform:translate(3vmax,2vmax) rotate(18deg)}}
+.hero-inner{position:relative;z-index:2}
+.cat{width:clamp(105px,15vw,160px);margin:0 auto -14px;display:block;position:relative;z-index:1}
+.logo{position:relative;z-index:2;display:inline-block;background:var(--paper);border:3px solid var(--ink);border-radius:28px;padding:clamp(14px,2.2vw,24px) clamp(24px,4.5vw,52px);box-shadow:9px 9px 0 var(--ink);transition:transform .25s}
+.logo:hover{transform:translate(-3px,-3px);box-shadow:12px 12px 0 var(--ink)}
+.logo h1{font-family:"Mochiy Pop One","Zen Kaku Gothic New",sans-serif;font-weight:400;font-size:clamp(2rem,7.4vw,4.9rem);line-height:1.15;letter-spacing:.05em;white-space:nowrap}
+.logo h1 span{display:inline-block;transition:transform .3s}
+.logo h1 span:hover{transform:translateY(-8px) rotate(-4deg)}
+.logo small{display:block;font-family:var(--en);font-weight:700;letter-spacing:.32em;font-size:clamp(.7rem,1.6vw,1rem);color:var(--sub);margin-top:6px}
+.badge{display:inline-flex;gap:10px;align-items:center;margin-top:34px;background:var(--ink);color:var(--paper);padding:9px 22px;border-radius:999px;font-weight:700;font-size:.95rem}
+.badge i{width:10px;height:10px;border-radius:50%;background:var(--mint);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{transform:scale(1.7);opacity:.4}}
+
+/* marquee */
+.marquee{background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;border-block:3px solid var(--ink);margin:-12px -10px 0;position:relative;z-index:3}
+.marquee div{display:inline-block;padding:12px 0;font-family:var(--en);font-weight:700;font-size:1.1rem;letter-spacing:.12em;animation:scroll 28s linear infinite}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* sections */
+section.s{max-width:1080px;margin:0 auto;padding:clamp(70px,10vw,120px) clamp(18px,4vw,40px) 0}
+.s h2{font-size:clamp(1.8rem,4.4vw,2.8rem);font-weight:900;letter-spacing:.04em;display:flex;align-items:center;gap:16px;margin-bottom:34px}
+.s h2::after{content:"";flex:1;height:4px;background:var(--ink);border-radius:2px}
+.s h2 em{font-family:var(--en);font-style:normal;font-size:.9rem;font-weight:700;color:var(--sub);order:2;margin-left:auto}
+.s h2::after{order:1}
+.card{background:var(--paper);border:3px solid var(--ink);border-radius:22px;box-shadow:7px 7px 0 var(--ink)}
+
+/* news */
+.news{list-style:none;padding:0;overflow:hidden}
+.news li{display:grid;grid-template-columns:130px 1fr;gap:18px;align-items:baseline;padding:20px 26px;border-bottom:2px dashed #C8D0DC;transition:background .2s}
+.news li:last-child{border:0}
+.news li:hover{background:var(--butter)}
+.news time{font-family:var(--en);font-weight:700;color:var(--sub)}
+.news b{display:inline-block;font-size:.75rem;padding:1px 10px;border-radius:999px;margin-right:10px;border:2px solid var(--ink);background:var(--mint)}
+.news b.t2{background:var(--sky)}
+
+/* two-col */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+.tl{padding:14px;background:var(--paper);min-height:300px}
+.tl-note{font-size:.85rem;color:var(--sub);margin-top:14px}
+
+/* c109 */
+.event{display:grid;gap:14px}
+.ev-row{display:grid;grid-template-columns:7.5em 1fr;gap:12px;padding:16px 22px}
+.ev-row:nth-child(1){background:var(--sky)}
+.ev-row:nth-child(2){background:var(--mint)}
+.ev-row:nth-child(3){background:var(--lav)}
+.ev-row dt{font-weight:900}
+.ev-row dd{font-family:var(--en);font-weight:700}
+.goods{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px;margin-top:34px}
+.good{padding:0;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.good:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:11px 11px 0 var(--ink)}
+.ph img{width:100%;height:100%;object-fit:contain;display:block;padding:10px}
+.good .ph{aspect-ratio:4/3;overflow:hidden;display:grid;place-items:center;font-family:var(--en);font-weight:700;letter-spacing:.2em;border-bottom:3px solid var(--ink);background:repeating-linear-gradient(135deg,var(--sky) 0 14px,#D6ECFA 14px 28px)}
+.good:nth-child(2) .ph{background:repeating-linear-gradient(135deg,var(--mint) 0 14px,#D8F3E8 14px 28px)}
+.good:nth-child(3) .ph{background:repeating-linear-gradient(135deg,var(--lav) 0 14px,#E6E1F8 14px 28px)}
+.good div.in{padding:18px 22px 22px}
+.good h3{font-size:1.15rem;font-weight:900}
+.good p{font-size:.9rem;color:var(--sub)}
+.price{display:inline-block;margin-top:8px;font-family:var(--en);font-weight:700;background:var(--butter);border:2px solid var(--ink);border-radius:8px;padding:0 10px}
+
+footer{margin-top:clamp(80px,10vw,130px);background:var(--ink);color:var(--paper);text-align:center;padding:50px 20px 40px}
+footer a{font-family:var(--en);font-weight:700}
+footer p{font-size:.8rem;opacity:.7;margin-top:10px}
+
+/* scroll reveal (one gentle rise per block) */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.rv.on{opacity:1;transform:none}
+
+
+/* ---- cute layer ---- */
+.card{border-radius:30px}
+.logo{border-radius:38px}
+.logo h1 span:nth-child(odd){color:var(--ink)}
+.logo h1 span:nth-child(3n+2){text-shadow:3px 3px 0 var(--sky)}
+.logo h1 span:nth-child(3n){text-shadow:3px 3px 0 var(--mint)}
+.logo h1 span:nth-child(3n+1){text-shadow:3px 3px 0 var(--lav)}
+.cat{animation:bob 4.5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-1.5deg)}}
+.paw{position:absolute;z-index:1;width:clamp(34px,5vw,58px);aspect-ratio:1;background-size:contain;background-repeat:no-repeat;animation:float 6s ease-in-out infinite}
+.pw1{left:9%;top:26%;transform:rotate(-20deg);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='%23FBFCFE'%3E%3Cellipse cx='32' cy='42' rx='14' ry='11'/%3E%3Cellipse cx='14' cy='28' rx='6' ry='8'/%3E%3Cellipse cx='25' cy='17' rx='6' ry='8'/%3E%3Cellipse cx='39' cy='17' rx='6' ry='8'/%3E%3Cellipse cx='50' cy='28' rx='6' ry='8'/%3E%3C/svg%3E")}
+.pw2{right:11%;top:22%;transform:rotate(18deg);animation-delay:-2s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='%2322252E'%3E%3Cellipse cx='32' cy='42' rx='14' ry='11'/%3E%3Cellipse cx='14' cy='28' rx='6' ry='8'/%3E%3Cellipse cx='25' cy='17' rx='6' ry='8'/%3E%3Cellipse cx='39' cy='17' rx='6' ry='8'/%3E%3Cellipse cx='50' cy='28' rx='6' ry='8'/%3E%3C/svg%3E");opacity:.85}
+.pw3{left:16%;bottom:12%;transform:rotate(12deg);animation-delay:-4s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='%2322252E'%3E%3Cellipse cx='32' cy='42' rx='14' ry='11'/%3E%3Cellipse cx='14' cy='28' rx='6' ry='8'/%3E%3Cellipse cx='25' cy='17' rx='6' ry='8'/%3E%3Cellipse cx='39' cy='17' rx='6' ry='8'/%3E%3Cellipse cx='50' cy='28' rx='6' ry='8'/%3E%3C/svg%3E");opacity:.85}
+.pw4{right:14%;bottom:14%;transform:rotate(-14deg);animation-delay:-1s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='%23FBFCFE'%3E%3Cellipse cx='32' cy='42' rx='14' ry='11'/%3E%3Cellipse cx='14' cy='28' rx='6' ry='8'/%3E%3Cellipse cx='25' cy='17' rx='6' ry='8'/%3E%3Cellipse cx='39' cy='17' rx='6' ry='8'/%3E%3Cellipse cx='50' cy='28' rx='6' ry='8'/%3E%3C/svg%3E")}
+@keyframes float{50%{translate:0 -14px}}
+.sp{position:absolute;z-index:1;color:var(--butter);font-size:clamp(1.4rem,3vw,2.2rem);text-shadow:0 0 0 var(--ink);-webkit-text-stroke:2px var(--ink);animation:twinkle 3s ease-in-out infinite}
+.sp1{left:24%;top:20%}.sp2{right:24%;top:52%;animation-delay:-1s;color:var(--mint)}.sp3{left:7%;top:62%;animation-delay:-2s;color:var(--lav)}
+@keyframes twinkle{50%{transform:scale(1.35) rotate(20deg)}}
+.s h2::before{content:"";order:0;width:38px;height:38px;flex:none;background:var(--butter) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='%2322252E'%3E%3Cellipse cx='32' cy='42' rx='14' ry='11'/%3E%3Cellipse cx='14' cy='28' rx='6' ry='8'/%3E%3Cellipse cx='25' cy='17' rx='6' ry='8'/%3E%3Cellipse cx='39' cy='17' rx='6' ry='8'/%3E%3Cellipse cx='50' cy='28' rx='6' ry='8'/%3E%3C/svg%3E") center/70% no-repeat;border:3px solid var(--ink);border-radius:50%}
+.s h2::after{height:0;background:none;border-top:4px dotted var(--ink);border-radius:0}
+.news b,.price{border-radius:999px}
+.good .ph{border-radius:0}
+nav a:hover{transform:rotate(-3deg)}
+@media(max-width:780px){.pw1,.pw2{display:none}}
+@media(max-width:780px){
+  .cols{grid-template-columns:1fr}
+  .news li{grid-template-columns:1fr;gap:2px}
+  nav a{padding:6px 9px;font-size:.78rem}
+  header .mark{display:none}
+  .ev-row{grid-template-columns:1fr;gap:0}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="mark" href="#top">くろねこわたぐも</a>
+  <nav aria-label="メインメニュー">
+    <a href="#news">News</a><a href="#c109">C109</a><a href="#x">X</a>
+  </nav>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <i class="paw pw1"></i><i class="paw pw2"></i><i class="paw pw3"></i><i class="paw pw4"></i>
+  <b class="sp sp1">✦</b><b class="sp sp2">✦</b><b class="sp sp3">✦</b>
+  <div class="hero-inner">
+    <!-- 目がカーソルを追う黒猫 -->
+    <svg class="cat" viewBox="0 0 200 150" role="img" aria-label="黒猫のイラスト">
+      <path d="M30 150V60L52 12 88 40H112L148 12 170 60V150Z" fill="#22252E"/>
+      <g id="eyes">
+        <ellipse cx="72" cy="88" rx="17" ry="19" fill="#F7EEB9"/>
+        <ellipse cx="128" cy="88" rx="17" ry="19" fill="#F7EEB9"/>
+        <ellipse class="pu" cx="72" cy="88" rx="6" ry="14" fill="#22252E"/>
+        <ellipse class="pu" cx="128" cy="88" rx="6" ry="14" fill="#22252E"/>
+      </g>
+      <ellipse cx="48" cy="116" rx="9" ry="5" fill="#F8D3DC" opacity=".85"/><ellipse cx="152" cy="116" rx="9" ry="5" fill="#F8D3DC" opacity=".85"/><path d="M93 111h14l-7 8z" fill="#F8C9D4"/><path d="M100 119v6M100 125q-6 6-12 1M100 125q6 6 12 1" stroke="#F7EEB9" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div class="logo">
+      <h1 aria-label="くろねこわたぐも"><span>く</span><span>ろ</span><span>ね</span><span>こ</span><span>わ</span><span>た</span><span>ぐ</span><span>も</span></h1>
+      <small>KURONEKO WATAGUMO</small>
+    </div>
+  </div>
+</div>
+
+<div class="marquee" aria-hidden="true"><div>
+  C109 ・ KURONEKO WATAGUMO ・ 12.30 南1ホール o-02b ・ C109 ・ KURONEKO WATAGUMO ・ 12.30 南1ホール o-02b ・ C109 ・ KURONEKO WATAGUMO ・ 12.30 南1ホール o-02b ・ C109 ・ KURONEKO WATAGUMO ・ 12.30 南1ホール o-02b ・
+</div></div>
+
+<section class="s rv" id="news">
+  <h2>お知らせ<em>NEWS</em></h2>
+  <ul class="news card" id="newsList"></ul>
+</section>
+
+<section class="s rv" id="c109">
+  <h2>C109 頒布情報<em>C109</em></h2>
+  <dl class="event" id="eventInfo"></dl>
+  <div class="goods" id="goods"></div>
+</section>
+
+<section class="s rv" id="x">
+  <h2>最新ポスト<em>X TIMELINE</em></h2>
+  <div class="cols">
+    <div class="card tl">
+      <a class="twitter-timeline" data-height="560" data-lang="ja" data-chrome="noheader nofooter transparent" href="https://twitter.com/Keita0518art?ref_src=twsrc%5Etfw">Tweets by Keita0518art</a>
+    </div>
+    <div>
+      <div class="card" style="padding:26px">
+        <p style="font-weight:900;font-size:1.2rem">最新情報はXで更新します</p>
+        <p style="color:var(--sub);margin-top:8px">新刊の進捗、サンプル、当日の配置などはXで先にお知らせします。表示されない場合は下のリンクから開いてください。</p>
+        <p style="margin-top:18px"><a href="https://x.com/Keita0518art" target="_blank" rel="noopener" style="display:inline-block;background:var(--ink);color:var(--paper);padding:10px 24px;border-radius:999px;font-weight:700;text-decoration:none">@Keita0518art をフォロー</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <a href="https://x.com/Keita0518art" target="_blank" rel="noopener">@Keita0518art</a>
+  <p>© 2026 くろねこわたぐも</p>
+</footer>
+
+<script>
+/* ============ ここを書き換えて更新します ============ */
+const NEWS = [
+  { date:"2026.11.07", tag:"サイト", cls:"", text:"サークルサイトを公開しました。" },
+  { date:"2026.11.07", tag:"C109", cls:"t2", text:"コミックマーケット109に参加します。頒布物の詳細は決まり次第こちらでお知らせします。" }
+];
+const EVENT = [
+  ["開催日","2026年12月30日（2日目）"],
+  ["スペース","南地区 “ｏ”ブロック－02b（南１ホール）"],
+  ["会場","東京ビッグサイト"]
+];
+const GOODS = [
+  { name:"新刊（タイトル未定）", desc:"内容・ページ数は決定次第お知らせします。", price:"価格未定" /*, img:"images/shinkan.jpg" */ },
+  { name:"頒布物 2", desc:"準備中です。", price:"価格未定" },
+  { name:"頒布物 3", desc:"準備中です。", price:"価格未定" }
+];
+/* ================================================== */
+
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+document.getElementById('newsList').innerHTML = NEWS.map(n =>
+  `<li><time>${esc(n.date)}</time><span><b class="${n.cls}">${esc(n.tag)}</b>${esc(n.text)}</span></li>`).join('');
+document.getElementById('eventInfo').innerHTML = EVENT.map(e =>
+  `<div class="ev-row card"><dt>${esc(e[0])}</dt><dd>${esc(e[1])}</dd></div>`).join('');
+document.getElementById('goods').innerHTML = GOODS.map(g =>
+  `<article class="good card">${g.img?`<div class="ph"><img src="${esc(g.img)}" alt="${esc(g.name)}" loading="lazy"></div>`:`<div class="ph">COMING SOON</div>`}<div class="in"><h3>${esc(g.name)}</h3><p>${esc(g.desc)}</p><span class="price">${esc(g.price)}</span></div></article>`).join('');
+
+/* 黒猫の目がカーソル（タッチ位置）を追う */
+const pupils = [...document.querySelectorAll('.pu')];
+const eyes = document.getElementById('eyes');
+function look(x, y){
+  const r = eyes.getBoundingClientRect();
+  const dx = x - (r.left + r.width/2), dy = y - (r.top + r.height/2);
+  const d = Math.hypot(dx, dy) || 1, k = Math.min(1, d/300);
+  pupils.forEach(p => p.style.transform = `translate(${dx/d*9*k}px,${dy/d*5*k}px)`);
+}
+addEventListener('pointermove', e => look(e.clientX, e.clientY), {passive:true});
+
+/* 背景のわたぐもがカーソルに合わせて少し動く */
+const blobs = [...document.querySelectorAll('.blob')];
+addEventListener('pointermove', e => {
+  const nx = e.clientX/innerWidth - .5, ny = e.clientY/innerHeight - .5;
+  blobs.forEach((b,i) => b.style.translate = `${nx*(i+1)*-40}px ${ny*(i+1)*-30}px`);
+}, {passive:true});
+
+/* スクロールで各ブロックが現れる */
+const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } }), {threshold:.12});
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+/* Xタイムライン埋め込み */
+(function(){ const s=document.createElement('script'); s.src='https://platform.twitter.com/widgets.js'; s.async=true; document.body.appendChild(s); })();
+</script>
+</body>
+</html>
